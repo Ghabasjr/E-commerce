@@ -1,0 +1,18 @@
+.details {
+  background-color: #f5f6f7;
+  margin: 20px;
+}
+.left-details {
+  background-color: none;
+  background: none;
+}
+.right-details {
+  background-color: #ffff;
+}
+img {
+  background: none;
+}
+.details {
+  display: flex;
+  flex-direction: row;
+}

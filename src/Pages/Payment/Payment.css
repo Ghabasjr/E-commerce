@@ -1,0 +1,16 @@
+.right-payment {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffff;
+}
+
+.payment-all {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  justify-content: space-between;
+}
+.payment-details {
+  display: flex;
+  flex-direction: column;
+}
