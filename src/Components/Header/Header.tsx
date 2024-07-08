@@ -13,7 +13,10 @@ export default function Header() {
         <h1 className="h-one">Office Seats Category</h1>
         <p>
           Find the perfect chair for your work space:
-          <p>Ergonomic, comfortable and design for your productivity.</p>
+          <p>
+            Ergonomic, comfortable and design for
+            <p>your productivity.</p>
+          </p>
         </p>
       </div>
       <div className="button-header">

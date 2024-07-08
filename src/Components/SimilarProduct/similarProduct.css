@@ -1,0 +1,27 @@
+.similar-product {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+}
+.img {
+  object-fit: cover;
+  width: 100%;
+}
+.similar {
+  margin-top: 40px;
+}
+.add-cart {
+  color: #f5f6f7;
+}
+.similarproduct {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .similarproduct {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -21,21 +21,29 @@
   gap: 0.5rem;
   display: flex;
 }
-
+.button-header {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
 .text {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 10px;
 }
 .h-one {
   font-size: 32px;
   font-family: "Times New Roman", Times, serif;
   font-weight: 600;
 }
-.button-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  gap: 1rem;
+@media (max-width: 768px) {
+  .button-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .text {
+    display: flex;
+    flex-direction: column;
+  }
 }

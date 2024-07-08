@@ -86,9 +86,7 @@ function Products() {
           </div>
         ))}
       </div>
-      <div>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

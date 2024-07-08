@@ -21,7 +21,7 @@ export default function Payment() {
                   Comfort and functionality combined. This chair promotes the
                   back health an beutify the office enviroment{" "}
                 </p>
-                <span>quqntity 1</span>
+                <span>quantity 1</span>
               </div>
             </div>
           </div>
@@ -39,25 +39,27 @@ export default function Payment() {
               <span>Virtual account </span>
               <Circle />
               <label>Card details</label>
-              <input type="number" placeholder="8888 9999 9999 8888" />
+              <span>8888 9999 9999 8888</span>
               <label htmlFor="expiry date">Expiry Date</label>
-              <input type="number" placeholder="05/2024" />
-              <label htmlFor="cvv">CVV</label>
-              <input type="number" placeholder="123" />
+              <div className="cvv">
+                <span>04/2024</span>
+                <label htmlFor="cvv">CVV</label>
+                <span>123</span>
+              </div>
             </div>
             <div className="sub-total">
               <div className="total1">
                 <span>Sub Total</span>
                 <span>$650</span>
-              </div>
-              <div className="discount">
                 <span>Discount</span>
                 <span>$0</span>
-              </div>
-              <div className="total">
                 <span>Total</span>
-                <span>$650</span>
+                <p>$650</p>
               </div>
+              <div className="discount">
+                <button>Continue to payment</button>
+              </div>
+              <div className="total"></div>
             </div>
           </div>
         </div>

@@ -32,15 +32,15 @@ export default function ProductDetails() {
               Comfort and functionality combined. This chair promotes the back
               health an beutify the office enviroment
             </p>
-            <span>Available</span>
+            <span className="span1">Available</span>
             <div className="span">
-              <span>Quantity</span>
               <div className="span-icon">
+                <span>Quantity</span>
                 <NumberSquareOne size={20} />
                 <CaretUp size={20} />
                 <CaretDown size={20} />
-                <button>
-                  <span>
+                <button className="btin">
+                  <span className="add-cart">
                     Add to cart <ShoppingCart />
                   </span>
                 </button>

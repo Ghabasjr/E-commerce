@@ -26,7 +26,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 15px 10px;
+  margin: 15px 0;
   background-color: #ffff;
 }
 
@@ -37,7 +37,6 @@
   .footer {
     flex-direction: column;
     align-items: center;
-    width: max-content;
   }
 }
 @media (max-width: 480px) {
