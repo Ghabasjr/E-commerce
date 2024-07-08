@@ -69,9 +69,6 @@ function Products() {
         <Navbar />
         <Header />
       </div>
-      <div className="navigate">
-        <a href="productDetails">Next page</a>
-      </div>
       <div className="grid-content">
         {CardData.map((data, index) => (
           <div key={index} className="products">

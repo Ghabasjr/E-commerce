@@ -10,9 +10,7 @@ export default function Payment() {
     <div>
       <div className="payment">
         <Navbar />
-        <div>
-          <a href="cart">Next page</a>
-        </div>
+
         <div className="payment-all">
           <div className="left-payment">
             <span>Home \ Cart \ Checkout</span>
