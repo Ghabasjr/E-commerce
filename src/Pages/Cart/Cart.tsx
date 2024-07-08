@@ -12,7 +12,7 @@ export default function Cart() {
         <Navbar />
         <div className="cart-container">
           <div className="left-cart">
-            <img src="image1.svg" alt="" />
+            <img src="image3.svg" alt="" />
             <div className="left-quantity">
               <span>Quantity</span>
               <NumberSquareOne />

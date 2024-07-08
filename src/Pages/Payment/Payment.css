@@ -1,31 +1,3 @@
-/* .right-payment {
-  display: flex;
-  flex-direction: column;
-  background-color: #ffff;
-  margin: 10px;
-  padding: 10px 15px;
-  gap: 3rem;
-}
-
-.payment-all {
-  display: flex;
-  flex-direction: row;
-  margin: 10px;
-  justify-content: space-between;
-}
-.payment-details {
-  display: flex;
-  flex-direction: column;
-}
-.discount {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 15px;
-  margin: 10px;
-  background-color: black;
-  color: black;
-} */
-
 .payment {
   display: flex;
   flex-direction: column;
@@ -41,9 +13,7 @@
 }
 
 .left-payment {
-  padding: 20px;
-  border-radius: 8px;
-  width: 48%;
+  background-color: #f5f6f7;
 }
 .right-payment {
   background-color: #ffff;

@@ -10,11 +10,14 @@ export default function Payment() {
     <div>
       <div className="payment">
         <Navbar />
+        <div>
+          <a href="cart">Next page</a>
+        </div>
         <div className="payment-all">
           <div className="left-payment">
             <span>Home \ Cart \ Checkout</span>
             <div className="payment-pic">
-              <img src="image1.svg" alt="" />
+              <img src="image3.svg" alt="" />
               <div className="payment-text">
                 <h1>Executive mesh black - $650</h1>
                 <p>
@@ -33,33 +36,30 @@ export default function Payment() {
             <div className="payment-details">
               <label>Email</label>
               <input type="text" placeholder="Nigeria" />
-              <h2>Select payment method</h2>
-              <span>Credit/debit card</span>
-
-              <span>Virtual account </span>
-              <Circle />
+              <label>Select payment method</label>
+              <input placeholder="Credit/Debit card" />
+              <input placeholder="Virtual card" />
               <label>Card details</label>
-              <span>8888 9999 9999 8888</span>
+              <input placeholder="8888 9999 9999 8888" />
               <label htmlFor="expiry date">Expiry Date</label>
+              <input placeholder="04/2024" />
               <div className="cvv">
-                <span>04/2024</span>
                 <label htmlFor="cvv">CVV</label>
-                <span>123</span>
+                <input placeholder="123" />
               </div>
             </div>
             <div className="sub-total">
               <div className="total1">
-                <span>Sub Total</span>
-                <span>$650</span>
-                <span>Discount</span>
-                <span>$0</span>
-                <span>Total</span>
+                <p>Sub Total</p>
+                <p>$650</p>
+                <p>Discount</p>
+                <p>$0</p>
+                <p>Total</p>
                 <p>$650</p>
               </div>
               <div className="discount">
                 <button>Continue to payment</button>
               </div>
-              <div className="total"></div>
             </div>
           </div>
         </div>

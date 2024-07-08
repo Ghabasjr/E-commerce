@@ -19,10 +19,13 @@ export default function ProductDetails() {
         <div className="navbar">
           <Navbar />
         </div>
+        <div className="page-pay">
+          <a href="payment">Next page</a>
+        </div>
         <div className="details">
           <div className="left-details">
             <CaretCircleLeft size={20} />
-            <img src="image1.svg" alt="" />
+            <img src="image3.svg" alt="" />
             <CaretCircleRight size={20} />
           </div>
           <div className="right-details">
