@@ -73,7 +73,7 @@ function Products() {
         {CardData.map((data, index) => (
           <div key={index} className="products">
             <div className="first-item">
-              <img className="img" src={data.image} alt="firstchair" />
+              <img className="image" src={data.image} alt="firstchair" />
             </div>
             <hr className="rule" />
             <div className="bottom-content">

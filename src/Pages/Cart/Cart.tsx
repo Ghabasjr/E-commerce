@@ -13,6 +13,7 @@ export default function Cart() {
         <div className="cart-container">
           <div className="left-cart">
             <img src="image3.svg" alt="" />
+
             <div className="left-quantity">
               <span>Quantity</span>
               <NumberSquareOne />

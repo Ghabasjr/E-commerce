@@ -39,24 +39,24 @@ export default function Payment() {
               <input placeholder="Virtual card" />
               <label>Card details</label>
               <input placeholder="8888 9999 9999 8888" />
-              <label htmlFor="expiry date">Expiry Date</label>
-              <input placeholder="04/2024" />
               <div className="cvv">
+                <label htmlFor="expiry date">Expiry Date</label>
+                <input placeholder="04/2024" />
                 <label htmlFor="cvv">CVV</label>
                 <input placeholder="123" />
               </div>
-            </div>
-            <div className="sub-total">
-              <div className="total1">
-                <p>Sub Total</p>
-                <p>$650</p>
-                <p>Discount</p>
-                <p>$0</p>
-                <p>Total</p>
-                <p>$650</p>
-              </div>
-              <div className="discount">
-                <button>Continue to payment</button>
+              <div className="sub-total">
+                <div className="total1">
+                  <p>Sub Total</p>
+                  <p>$650</p>
+                  <p>Discount</p>
+                  <p>$0</p>
+                  <p>Total</p>
+                  <p>$650</p>
+                </div>
+                <div className="discount">
+                  <button>Continue to payment</button>
+                </div>
               </div>
             </div>
           </div>
