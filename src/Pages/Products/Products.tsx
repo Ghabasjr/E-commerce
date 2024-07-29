@@ -4,8 +4,11 @@ import Header from "../../Components/Header/Header";
 import { ShoppingCart } from "phosphor-react";
 import "./Products.css";
 import Footer from "../../Components/Footer/Footer";
+import { useNavigate, useRoutes } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 function Products() {
+  const navigate = useNavigate();
   const CardData = [
     {
       image: "/image1.svg",
@@ -63,6 +66,11 @@ function Products() {
     },
   ];
 
+  const handleNavigate = (index: number) => {
+    const randomId = uuidv4();
+    navigate(`/ProductDetails/${index}/${randomId}`);
+  };
+
   return (
     <div>
       <div className="container">
@@ -70,8 +78,12 @@ function Products() {
         <Header />
       </div>
       <div className="grid-content">
-        {CardData.map((data, index) => (
-          <div key={index} className="products">
+        {CardData.map((data: any, index: number) => (
+          <div
+            onClick={() => handleNavigate(index)}
+            key={index}
+            className="products"
+          >
             <div className="first-item">
               <img className="image" src={data.image} alt="firstchair" />
             </div>

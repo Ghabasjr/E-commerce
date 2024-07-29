@@ -26,17 +26,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 70px;
+}
+.arrow {
+  cursor: pointer;
+}
+.img-detail {
+  width: 100%;
+  height: auto;
 }
 
 .right-details {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.right-details h1 {
-  margin-bottom: 10px;
 }
 
 .right-details span,

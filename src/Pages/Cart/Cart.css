@@ -66,9 +66,15 @@
 
 /* Responsive Styles */
 @media (min-width: 768px) {
-  .left-cart,
+  .left-cart {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+  }
   .right-cart {
     padding: 40px;
+    display: flex;
+    flex-direction: column;
   }
 
   .right-cart {
