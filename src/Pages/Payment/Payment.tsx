@@ -4,8 +4,15 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import { Circle } from "phosphor-react";
 import "./Payment.css";
+import { useNavigate } from "react-router-dom";
+import { v4 } from "uuid";
 
 export default function Payment() {
+  const navigate = useNavigate();
+  const CardData2 = [];
+  const handleNavigate = (index: number) => {
+    navigate(`/payment/${index}`);
+  };
   return (
     <div>
       <div className="payment">
