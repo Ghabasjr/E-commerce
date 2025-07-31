@@ -17,7 +17,7 @@ export default function ContactUs() {
                 </ul>
                 <p>Thank you for visiting my portfolio!</p>
             </div>
-
+            <Footer />
         </div>
     )
 }

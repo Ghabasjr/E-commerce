@@ -8,7 +8,7 @@ import Cart from "./Pages/Cart/Cart";
 import ContactUs from "./Components/ContactUs/ContactUs";
 import AboutUs from "./Components/AboutUs/AboutUs";
 import Disclaimer from "./Components/Disclaimer";
-import Privacy from "./Pages/Privacy";
+import Privacy from "./Components/Privacy";
 
 function App() {
   return (

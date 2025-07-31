@@ -15,6 +15,10 @@ export default function Navbar() {
   const handleHomeClick = () => {
     window.location.href = "/";
   }
+
+  const handlePrivacyClick = () => {
+    window.location.href = "/privacy";
+  }
   return (
     <div>
       <div className="content">
@@ -28,7 +32,7 @@ export default function Navbar() {
               <span onClick={handleContactClick} className="cant">Contact</span>
             </li>
             <li>
-              <span className="help">Privacy Policy</span>
+              <span onClick={handlePrivacyClick} className="help">Privacy Policy</span>
             </li>
           </ul>
           <div className="btn">
