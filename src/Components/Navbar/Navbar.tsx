@@ -11,10 +11,14 @@ export default function Navbar() {
   const handleAboutClick = () => {
     window.location.href = "/aboutus";
   }
+
+  const handleHomeClick = () => {
+    window.location.href = "/";
+  }
   return (
     <div>
       <div className="content">
-        <span className="bluespace">BLUESPACE</span>
+        <span onClick={handleHomeClick} className="bluespace">BLUESPACE</span>
         <div className="right-item">
           <ul className="list-items">
             <li>

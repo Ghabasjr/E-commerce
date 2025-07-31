@@ -1,5 +1,5 @@
 .product {
-  padding: 20px;
+  padding: 1.25rem; /* 20px */
 }
 
 .details {
@@ -7,66 +7,69 @@
   flex-direction: column;
   width: 100%;
   max-width: 1200px;
-  padding: 20px;
-  margin: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.left-details {
-  flex: 1;
-  padding: 20px;
-}
-.right-details {
-  flex: 1;
-  padding: 20px;
+  margin: 1.25rem auto;
+  padding: 1.25rem;
   background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
 }
 
 .left-details {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 70px;
-}
-.arrow {
-  cursor: pointer;
-}
-.img-detail {
-  width: 100%;
-  height: auto;
+  gap: 4rem; /* 64px */
+  padding: 1.25rem;
 }
 
 .right-details {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #fff;
+  padding: 1.25rem;
+}
+
+.arrow {
+  cursor: pointer;
+}
+
+.img-detail {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .right-details span,
 .right-details p {
-  margin: 5px 0;
+  margin: 0.5rem 0;
+  line-height: 1.5;
 }
 
 .span {
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 .span-icon {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem; /* 10px */
 }
 
 .btin {
-  padding: 10px 20px;
-  font-size: 1.2rem;
+  padding: 0.625rem 1.25rem;
+  font-size: 1.1rem;
   background-color: #0d0d0e;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .btin:hover {
@@ -76,7 +79,7 @@
 .add-cart {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 0.5rem;
 }
 
 /* Responsive Styles */
@@ -87,11 +90,11 @@
 
   .left-details,
   .right-details {
-    padding: 40px;
+    padding: 2.5rem;
   }
 
   .right-details {
-    margin-left: 20px;
+    margin-left: 1.25rem;
   }
 }
 
@@ -99,12 +102,18 @@
   .left-details,
   .right-details {
     width: 100%;
+    padding: 1rem;
+    flex-direction: column;
+  }
+
+  .left-details {
+    gap: 2rem;
   }
 }
 
 .similar {
   width: 100%;
   max-width: 1200px;
-  padding: 20px;
-  margin: 20px;
+  padding: 1.25rem;
+  margin: 1.25rem auto;
 }
