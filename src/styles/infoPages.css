@@ -1,0 +1,59 @@
+/* src/styles/infoPages.css */
+
+.page-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.page-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ff6600; /* warm orange */
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.page-container p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.page-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.page-container li {
+  margin-bottom: 0.5rem;
+}
+
+.page-container a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.page-container a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .page-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .page-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .page-container p {
+    font-size: 0.95rem;
+  }
+}

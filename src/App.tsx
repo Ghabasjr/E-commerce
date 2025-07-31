@@ -5,6 +5,10 @@ import Header from "./Components/Header/Header";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import Payment from "./Pages/Payment/Payment";
 import Cart from "./Pages/Cart/Cart";
+import ContactUs from "./Components/ContactUs/ContactUs";
+import AboutUs from "./Components/AboutUs/AboutUs";
+import Disclaimer from "./Components/Disclaimer";
+import Privacy from "./Pages/Privacy";
 
 function App() {
   return (
@@ -16,6 +20,10 @@ function App() {
             path="ProductDetails/:id/:randomId"
             element={<ProductDetails />}
           />
+          <Route path="contactus" element={<ContactUs />} />
+          <Route path="aboutus" element={<AboutUs />} />
+          <Route path="privacy" element={<Privacy />} />
+          <Route path="disclaimer" element={<Disclaimer />} />
           <Route path="Payment" element={<Payment />} />
           <Route path="Cart" element={<Cart />} />
         </Routes>

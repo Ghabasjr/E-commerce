@@ -5,6 +5,7 @@
 }
 .tact,
 .elp {
+  cursor: pointer;
   opacity: 10px;
 }
 

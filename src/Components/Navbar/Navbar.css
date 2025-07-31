@@ -19,6 +19,7 @@
 .cater,
 .cant,
 .help {
+  cursor: pointer;
   align-items: center;
   padding: 10px 20px;
   background-color: #f5f6f7;

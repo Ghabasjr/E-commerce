@@ -3,6 +3,14 @@ import "./Navbar.css";
 import { ShoppingCart } from "phosphor-react";
 
 export default function Navbar() {
+
+  const handleContactClick = () => {
+    window.location.href = "/contactus";
+  }
+
+  const handleAboutClick = () => {
+    window.location.href = "/aboutus";
+  }
   return (
     <div>
       <div className="content">
@@ -10,13 +18,13 @@ export default function Navbar() {
         <div className="right-item">
           <ul className="list-items">
             <li>
-              <span className="cater">Categories</span>
+              <span onClick={handleAboutClick} className="cater">About Us</span>
             </li>
             <li>
-              <span className="cant">Contact</span>
+              <span onClick={handleContactClick} className="cant">Contact</span>
             </li>
             <li>
-              <span className="help">Help</span>
+              <span className="help">Privacy Policy</span>
             </li>
           </ul>
           <div className="btn">

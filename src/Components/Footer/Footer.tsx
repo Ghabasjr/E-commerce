@@ -2,6 +2,18 @@ import React from "react";
 import "./Footer.css";
 
 export default function Footer() {
+
+  const handleContactClick = () => {
+    window.location.href = "/contactus";
+  };
+
+  const handlePrivacyClick = () => {
+    window.location.href = "/privacy";
+  };
+
+  const handleDisclaimerClick = () => {
+    window.location.href = "/disclaimer";
+  };
   return (
     <div>
       <div className="footer">
@@ -10,8 +22,9 @@ export default function Footer() {
           <div className="footer-list">
             <ul>
               <li>Categories</li>
-              <li className="tact">Contact</li>
-              <li className="elp">Help</li>
+              <li onClick={handleContactClick} className="tact">Contact</li>
+              <li onClick={handlePrivacyClick} className="elp">Privacy Policy</li>
+              <li onClick={handleDisclaimerClick} className="tact">Disclaimer</li>
             </ul>
           </div>
         </div>

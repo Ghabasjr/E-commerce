@@ -1,0 +1,7 @@
+.contact-us-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    background-color: #f9f9f9;
+}
