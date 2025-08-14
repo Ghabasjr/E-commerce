@@ -28,7 +28,8 @@
         "android.permission.CAMERA",
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE"
-      ]
+      ],
+      "package": "com.ghabasjr.foodorderingapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -36,6 +37,11 @@
     "plugins": [
       "expo-location",
       "expo-notifications"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e8bcc3a4-9b91-40b2-9e64-3390363ea003"
+      }
+    }
   }
 }
