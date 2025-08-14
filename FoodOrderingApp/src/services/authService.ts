@@ -1,145 +1,116 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { User } from '../types';
+import { 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, 
+  signOut, 
+  sendPasswordResetEmail,
+  updateProfile,
+  updateEmail,
+  updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider
+} from 'firebase/auth';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { auth, db } from './firebase';
 
-// Mock data for development
-const mockUsers: User[] = [
-  {
-    id: '1',
-    email: 'customer@example.com',
-    name: 'John Doe',
-    phone: '+1234567890',
-    role: 'customer',
-    address: {
-      id: '1',
-      street: '123 Main St',
-      city: 'New York',
-      state: 'NY',
-      zipCode: '10001',
-      country: 'USA',
-      coordinates: {
-        latitude: 40.7128,
-        longitude: -74.0060,
-      },
-    },
-  },
-  {
-    id: '2',
-    email: 'restaurant@example.com',
-    name: 'Jane Smith',
-    phone: '+1234567891',
-    role: 'restaurant_owner',
-  },
-];
+export interface UserData {
+  name: string;
+  email: string;
+  phone: string;
+  role: 'customer' | 'restaurant_owner';
+}
 
-const AUTH_TOKEN_KEY = '@auth_token';
-const USER_KEY = '@user_data';
-
-// Simulate API delay
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-export const login = async (email: string, password: string): Promise<User> => {
-  await delay(1000); // Simulate network delay
-  
-  const user = mockUsers.find(u => u.email === email);
-  
-  if (!user || password !== 'password123') {
-    throw new Error('Invalid email or password');
-  }
-  
-  // Store auth token and user data
-  const token = `mock_token_${user.id}`;
-  await AsyncStorage.setItem(AUTH_TOKEN_KEY, token);
-  await AsyncStorage.setItem(USER_KEY, JSON.stringify(user));
-  
-  return user;
-};
-
-export const register = async (userData: Omit<User, 'id'>): Promise<User> => {
-  await delay(1000);
-  
-  // Check if user already exists
-  const existingUser = mockUsers.find(u => u.email === userData.email);
-  if (existingUser) {
-    throw new Error('User already exists with this email');
-  }
-  
-  // Create new user
-  const newUser: User = {
-    ...userData,
-    id: `${Date.now()}`, // Simple ID generation
-  };
-  
-  mockUsers.push(newUser);
-  
-  // Store auth token and user data
-  const token = `mock_token_${newUser.id}`;
-  await AsyncStorage.setItem(AUTH_TOKEN_KEY, token);
-  await AsyncStorage.setItem(USER_KEY, JSON.stringify(newUser));
-  
-  return newUser;
-};
-
-export const logout = async (): Promise<void> => {
-  await AsyncStorage.removeItem(AUTH_TOKEN_KEY);
-  await AsyncStorage.removeItem(USER_KEY);
-};
-
-export const getCurrentUser = async (): Promise<User | null> => {
+export const loginUser = async (email: string, password: string) => {
   try {
-    const token = await AsyncStorage.getItem(AUTH_TOKEN_KEY);
-    const userData = await AsyncStorage.getItem(USER_KEY);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    return userCredential.user;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
+export const registerUser = async (userData: UserData, password: string) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, userData.email, password);
     
-    if (token && userData) {
-      return JSON.parse(userData);
+    // Update display name
+    await updateProfile(userCredential.user, { displayName: userData.name });
+    
+    // Save user data to Firestore
+    const collection = userData.role === 'customer' ? 'users' : 'restaurants';
+    const userDoc = doc(db, collection, userCredential.user.uid);
+    await setDoc(userDoc, {
+      ...userData,
+      createdAt: new Date(),
+    });
+    
+    return userCredential.user;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
+export const logoutUser = async () => {
+  try {
+    await signOut(auth);
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
+export const resetPassword = async (email: string) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
+export const getUserRole = async (userId: string) => {
+  try {
+    // Check users collection first
+    let docRef = doc(db, 'users', userId);
+    let docSnap = await getDoc(docRef);
+    
+    if (docSnap.exists()) {
+      return 'customer';
     }
+    
+    // Check restaurants collection
+    docRef = doc(db, 'restaurants', userId);
+    docSnap = await getDoc(docRef);
+    
+    if (docSnap.exists()) {
+      return 'restaurant_owner';
+    }
+    
     return null;
-  } catch (error) {
-    console.error('Error getting current user:', error);
-    return null;
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 };
 
-export const updateProfile = async (userData: Partial<User>): Promise<User> => {
-  await delay(500);
-  
-  const currentUserData = await AsyncStorage.getItem(USER_KEY);
-  if (!currentUserData) {
-    throw new Error('User not found');
+export const updateUserEmail = async (newEmail: string, currentPassword: string) => {
+  try {
+    const user = auth.currentUser;
+    if (!user || !user.email) throw new Error('No user logged in');
+    
+    const credential = EmailAuthProvider.credential(user.email, currentPassword);
+    await reauthenticateWithCredential(user, credential);
+    await updateEmail(user, newEmail);
+  } catch (error: any) {
+    throw new Error(error.message);
   }
-  
-  const currentUser = JSON.parse(currentUserData);
-  const updatedUser = { ...currentUser, ...userData };
-  
-  // Update in mock data
-  const userIndex = mockUsers.findIndex(u => u.id === currentUser.id);
-  if (userIndex !== -1) {
-    mockUsers[userIndex] = updatedUser;
-  }
-  
-  await AsyncStorage.setItem(USER_KEY, JSON.stringify(updatedUser));
-  
-  return updatedUser;
 };
 
-export const forgotPassword = async (email: string): Promise<void> => {
-  await delay(1000);
-  
-  const user = mockUsers.find(u => u.email === email);
-  if (!user) {
-    throw new Error('User not found with this email');
+export const updateUserPassword = async (newPassword: string, currentPassword: string) => {
+  try {
+    const user = auth.currentUser;
+    if (!user || !user.email) throw new Error('No user logged in');
+    
+    const credential = EmailAuthProvider.credential(user.email, currentPassword);
+    await reauthenticateWithCredential(user, credential);
+    await updatePassword(user, newPassword);
+  } catch (error: any) {
+    throw new Error(error.message);
   }
-  
-  // In a real app, this would send an email
-  console.log(`Password reset email sent to ${email}`);
-};
-
-export const resetPassword = async (token: string, newPassword: string): Promise<void> => {
-  await delay(500);
-  
-  // In a real app, this would validate the token and update the password
-  console.log('Password reset successful');
-};
-
-export const getAuthToken = async (): Promise<string | null> => {
-  return await AsyncStorage.getItem(AUTH_TOKEN_KEY);
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,46 +9,42 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
-} from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
-
-import { RootState } from '../../store';
-import { login } from '../../store/slices/authSlice';
+} from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { loginUser } from "../../services/authService";
 
 const LoginScreen: React.FC = () => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const { isLoading, error } = useSelector((state: RootState) => state.auth);
-
-  const [email, setEmail] = useState('customer@example.com');
-  const [password, setPassword] = useState('password123');
+  const [email, setEmail] = useState("customer@example.com");
+  const [password, setPassword] = useState("password123");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
     if (!email || !password) {
-      Alert.alert('Error', 'Please fill in all fields');
+      Alert.alert("Error", "Please fill in all fields");
       return;
     }
 
+    setIsLoading(true);
     try {
-      await dispatch(login({ email, password })).unwrap();
+      await loginUser(email, password);
+      // Navigation will be handled by AppNavigator based on auth state
     } catch (err: any) {
-      Alert.alert('Login Failed', err.message || 'An error occurred');
+      Alert.alert("Login Failed", err.message || "An error occurred");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <KeyboardAvoidingView 
-      style={styles.container} 
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <LinearGradient
-        colors={['#FF6B35', '#F7931E']}
-        style={styles.background}
-      >
+      <LinearGradient colors={["#FF6B35", "#F7931E"]} style={styles.background}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.logoContainer}>
             <Ionicons name="restaurant" size={60} color="white" />
@@ -58,7 +54,12 @@ const LoginScreen: React.FC = () => {
 
           <View style={styles.formContainer}>
             <View style={styles.inputContainer}>
-              <Ionicons name="mail-outline" size={20} color="#666" style={styles.inputIcon} />
+              <Ionicons
+                name="mail-outline"
+                size={20}
+                color="#666"
+                style={styles.inputIcon}
+              />
               <TextInput
                 style={styles.input}
                 placeholder="Email"
@@ -71,7 +72,12 @@ const LoginScreen: React.FC = () => {
             </View>
 
             <View style={styles.inputContainer}>
-              <Ionicons name="lock-closed-outline" size={20} color="#666" style={styles.inputIcon} />
+              <Ionicons
+                name="lock-closed-outline"
+                size={20}
+                color="#666"
+                style={styles.inputIcon}
+              />
               <TextInput
                 style={styles.input}
                 placeholder="Password"
@@ -80,14 +86,14 @@ const LoginScreen: React.FC = () => {
                 secureTextEntry={!showPassword}
                 autoCapitalize="none"
               />
-              <TouchableOpacity 
+              <TouchableOpacity
                 onPress={() => setShowPassword(!showPassword)}
                 style={styles.eyeIcon}
               >
-                <Ionicons 
-                  name={showPassword ? "eye-off-outline" : "eye-outline"} 
-                  size={20} 
-                  color="#666" 
+                <Ionicons
+                  name={showPassword ? "eye-off-outline" : "eye-outline"}
+                  size={20}
+                  color="#666"
                 />
               </TouchableOpacity>
             </View>
@@ -98,13 +104,13 @@ const LoginScreen: React.FC = () => {
               disabled={isLoading}
             >
               <Text style={styles.loginButtonText}>
-                {isLoading ? 'Signing In...' : 'Sign In'}
+                {isLoading ? "Signing In..." : "Sign In"}
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.forgotPasswordButton}
-              onPress={() => navigation.navigate('ForgotPassword' as never)}
+              onPress={() => navigation.navigate("ForgotPassword" as never)}
             >
               <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
             </TouchableOpacity>
@@ -117,16 +123,11 @@ const LoginScreen: React.FC = () => {
 
             <View style={styles.signupContainer}>
               <Text style={styles.signupText}>Don't have an account? </Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Register' as never)}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Register" as never)}
+              >
                 <Text style={styles.signupLink}>Sign Up</Text>
               </TouchableOpacity>
-            </View>
-
-            <View style={styles.demoContainer}>
-              <Text style={styles.demoTitle}>Demo Accounts:</Text>
-              <Text style={styles.demoText}>Customer: customer@example.com</Text>
-              <Text style={styles.demoText}>Restaurant: restaurant@example.com</Text>
-              <Text style={styles.demoText}>Password: password123</Text>
             </View>
           </View>
         </ScrollView>
@@ -144,39 +145,39 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 20,
   },
   logoContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 40,
   },
   title: {
     fontSize: 28,
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
     marginTop: 10,
   },
   subtitle: {
     fontSize: 16,
-    color: 'rgba(255, 255, 255, 0.8)',
+    color: "rgba(255, 255, 255, 0.8)",
     marginTop: 5,
   },
   formContainer: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 20,
     padding: 25,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.2,
     shadowRadius: 10,
     elevation: 8,
   },
   inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
+    borderBottomColor: "#E0E0E0",
     marginBottom: 20,
     paddingBottom: 10,
   },
@@ -186,75 +187,75 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
-    color: '#333',
+    color: "#333",
   },
   eyeIcon: {
     padding: 5,
   },
   loginButton: {
-    backgroundColor: '#FF6B35',
+    backgroundColor: "#FF6B35",
     borderRadius: 12,
     paddingVertical: 15,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 10,
   },
   loginButtonText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   forgotPasswordButton: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 15,
   },
   forgotPasswordText: {
-    color: '#FF6B35',
+    color: "#FF6B35",
     fontSize: 14,
   },
   divider: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginVertical: 20,
   },
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#E0E0E0',
+    backgroundColor: "#E0E0E0",
   },
   dividerText: {
     marginHorizontal: 15,
-    color: '#666',
+    color: "#666",
     fontSize: 14,
   },
   signupContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   signupText: {
-    color: '#666',
+    color: "#666",
     fontSize: 14,
   },
   signupLink: {
-    color: '#FF6B35',
+    color: "#FF6B35",
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   demoContainer: {
     marginTop: 20,
     padding: 15,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: "#F5F5F5",
     borderRadius: 8,
   },
   demoTitle: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
     marginBottom: 5,
   },
   demoText: {
     fontSize: 12,
-    color: '#666',
+    color: "#666",
     marginBottom: 2,
   },
 });
